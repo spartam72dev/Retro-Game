@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+body {
+
+    background-image: url('./images/background3.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.title {
+
+    font-size: 40px;
+    width: max-content;
+    letter-spacing: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    background: rgb(42, 42, 42);
+    text-shadow:
+        0px 0px 5px rgba(255, 255, 255, 1),
+        0px 0px 10px rgba(255, 255, 255, 1),
+        0px 0px 15px rgba(255, 255, 255, 1),
+        0px 0px 20px rgb(247, 255, 24),
+        0px 0px 30px rgb(255, 255, 24),
+        0px 0px 40px rgb(255, 216, 24),
+        0px 0px 55px rgb(255, 193, 24),
+        0px 0px 75px rgb(227, 219, 68);
+}
+
+.game {
+
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    display: grid;
+    background-image: url('./images/background3.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(10, 60px);
+    place-items: center;
+    width: fit-content;
+    margin: auto;
+
+}
+
+.game .asteroid {
+
+    grid-row: var(--row);
+    grid-column: var(--column);
+    font-size: 25px;
+
+}
+
+.spaceShip {
+
+    grid-row: var(--row);
+    grid-column: var(--column);
+    color: azure;
+    font-weight: 900;
+
+}
+
+.alert-danger {
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.gameOver {
+
+    letter-spacing: 13px;
+    font-weight: 900;
+    font-size: 45px;
+}
+
+@media only screen and (max-width: 992px) {
+
+    .game {
+
+        grid-template-columns: repeat(10, 45px);
+        grid-template-rows: repeat(10, 45px);
+    }
+
+    .gameOver {
+
+        font-size: 22px !important;
+        letter-spacing: 6px !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .game {
+
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+    }
+
+    .gameOver {
+
+        font-size: 18px !important;
+        letter-spacing: 3px !important;
+    }
+}

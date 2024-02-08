@@ -1,0 +1,47 @@
+<div {{ attributes.defaults(stimulus_controller('game')) }} class="col-12 px-5 mt-4" {% if running %} data-poll="delay({{max(30,300 - score)}})|addAsteroid" {% endif %} data-action="keydown.left@document->game#moveLeft keydown.right@document->game#moveRight">
+
+	<div class="my-4 text-center">
+		<span class="h3 text-white ms-5">
+			Score :&nbsp;
+			{{score}}
+		</span>
+	</div>
+
+	<div
+		class="game position-relative p-2">
+		{# Gameover #}
+		{% if gameOver %}
+			<audio autoplay>
+				<source src="{{asset('./styles/music/gameover.mp3')}}" type="audio/mpeg"/>
+			</audio>
+			<div class="alert alert-warning border border-3 border-danger text-danger position-absolute p-4" role="alert">
+				<span class="gameOver">GAME OVER</span>
+			</div>
+		{% endif %}
+
+
+		{# Asteroids position & img #}
+		{% for row,asteroid in asteroids %}
+			<div class="asteroid" style="--column:{{asteroid + 1}}; --row: {{row + 1}}"><img src="{{asset('./styles/images/asteroid.png')}}" class="img-fluid"></div>
+		{% endfor %}
+		{# SpaceShip position & img #}
+		<div class="spaceShip" style="--column:{{spaceShip + 1}}; --row: 10">
+			{% if gameOver %}
+				<img src="{{ asset('./styles/images/explode.png') }}" class="img-fluid">
+			{% else %}
+				<img src="{{ asset('./styles/images/spaceship.png') }}" class="img-fluid">
+			{% endif %}
+		</div>
+	</div>
+
+
+	<div class="d-flex mt-4">
+		{% if gameOver %}
+			<button class="btn btn-lg btn-primary m-auto" data-action="click@document->game#tryAgain">Recommencer</button>
+		{% else %}
+			<button class="m-auto fw-bold {{ running ? 'btn btn-lg btn-warning' : 'btn btn-lg btn-success' }}" data-action="live#action" data-action-name="toggleRunning">{{ running ? 'Pause' : 'Jouer' }}</button>
+		{% endif %}
+	</div>
+
+
+</div>
